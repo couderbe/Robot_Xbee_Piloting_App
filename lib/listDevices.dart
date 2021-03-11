@@ -1,3 +1,4 @@
+import 'package:call_saver/main.dart';
 import 'package:flutter/material.dart';
 import 'dart:typed_data';
 import 'package:call_saver/basicComponents.dart';
@@ -6,8 +7,7 @@ import 'package:call_saver/serial/Serial.dart';
 
 class ListDevices extends StatefulWidget {
   static const String routeName = '/';
-  final Serial serial;
-  ListDevices(this.serial);
+  final Serial serial = MyApp.mainSerial;
   @override
   _ListDevicesState createState() => _ListDevicesState();
 }

@@ -21,9 +21,9 @@ class _MyAppState extends State<MyApp> {
     MyApp.mainSerial.initSerial();
     return MaterialApp(
       routes: {
-        Routes.listDevices: (context) => ListDevices(MyApp.mainSerial),
-        Routes.arrowMode: (context) => ArrowMode(MyApp.mainSerial),
-        Routes.joystickMode: (context) => JoystickMode(MyApp.mainSerial),
+        Routes.listDevices: (context) => ListDevices(),
+        Routes.arrowMode: (context) => ArrowMode(),
+        Routes.joystickMode: (context) => JoystickMode(),
       },
     );
   }

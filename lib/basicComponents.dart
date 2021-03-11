@@ -1,5 +1,7 @@
+import 'package:call_saver/robot.dart';
 import 'package:flutter/material.dart';
 import 'package:call_saver/routes/Routes.dart';
+import 'package:property_change_notifier/property_change_notifier.dart';
 
 class BasicAppBar extends StatefulWidget implements PreferredSizeWidget {
   BasicAppBar({Key key})
@@ -73,31 +75,20 @@ class BasicDrawer extends StatelessWidget {
   }
 }
 
-class StatefulText extends StatefulWidget {
-  final ChangeNotifier observedObject;
-  StatefulText(this.observedObject);
-
-  @override
-  _StatefulTextState createState() => _StatefulTextState();
-}
-
-class _StatefulTextState extends State<StatefulText> {
-  String _textHolder = "";
-
-  void textChangeListener() {
-    setState(() {
-      _textHolder = "";
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    widget.observedObject.addListener(textChangeListener);
-  }
-
+class ChangingText extends StatelessWidget {
+  final List<String> property;
+  ChangingText(this.property);
   @override
   Widget build(BuildContext context) {
-    return Text("$_textHolder");
+    return PropertyChangeConsumer<Robot>(
+      properties: property,
+      builder: (context, model, properties) {
+        print(property);
+        if (property.length == 1) {
+          return Text(model.getVar(property.first).toString());
+        }
+        return Text("");
+      },
+    );
   }
 }

@@ -27,11 +27,22 @@ class Robot extends PropertyChangeNotifier<String> {
   void parseData(String str) {
     print("Data received from serial: $str");
     if (str.startsWith("pos:")) {
-      // Il faut changer le code dans le strames sur teensy
       List<String> params = str.split("\t");
       setX(double.parse(params.elementAt(1)));
       setY(double.parse(params.elementAt(2)));
       setAngle(double.parse(params.elementAt(3)));
     }
+  }
+
+  double getVar(String name) {
+    if (name.compareTo("x") == 0) {
+      return _x;
+    } else if (name.compareTo("y") == 0) {
+      return _y;
+    } else if (name.compareTo("angle") == 0) {
+      return _angle;
+    }
+    // Cette valeur de retour n'a aucun sens
+    return 0;
   }
 }
