@@ -40,6 +40,7 @@ class JoystickMode extends StatelessWidget {
             onDirectionChanged: (degrees, distance) {
               if (DateTime.now().millisecondsSinceEpoch - lastMessageSendTime >
                   timeBetweenMessages) {
+                serial.sendString("o");
                 double _consOmega;
                 double _consSpeed = pow(distance, 5) * 1000;
                 double _errAngle = robot.angle - degrees;
